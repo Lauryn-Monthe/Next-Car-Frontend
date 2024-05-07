@@ -1,0 +1,75 @@
+<h2>Create new customer</h2>
+<form class="form" [formGroup]="customerForm" >
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" id="lastname" 
+            formControlName="lastname" 
+            placeholder="Lastname">
+        </div>
+        <div class="col-md-6">
+            <input type="text" id="firstname" 
+            formControlName="firstname" 
+            placeholder="Firstname">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <div class="input-group">
+                <input class="form-control"
+                 type="text" 
+                 ngbDatepicker 
+                 #d="ngbDatepicker" 
+                 id="birthday"
+                 formControlName="birthday" 
+                 placeholder="dd/mm/yyyy">
+            <button class="btn btn-outline-secondary calendar" type="button" (click)="d.toggle()"></button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <input type="text" id="email" 
+            formControlName="email" 
+            placeholder="Email">
+        </div>
+    </div>
+    <h4>Address</h4>
+    <div formGroupName="address">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <input type="text" id="streetAndNumber" 
+                formControlName="streetAndNumber" 
+                placeholder="Street and number">
+            </div>
+            <div class="col-md-6">
+                <input type="text" id="postalCode" 
+                formControlName="postalCode" 
+                placeholder="PostalCode">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <input type="text" id="country" 
+                formControlName="country" 
+                placeholder="Country">
+            </div>
+            <div class="col-md-6">
+                <input type="text" id="city" 
+                formControlName="city" 
+                placeholder="City">
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" id="phoneNumber" 
+            formControlName="phoneNumber" 
+            placeholder="Phone">
+        </div>
+        <div class="col-md-6">
+            <input type="text" id="gender" 
+            formControlName="gender" 
+            placeholder="Gender">
+        </div>
+    </div>
+
+    <button (click)="createCustomer()">Add</button>
+</form>
