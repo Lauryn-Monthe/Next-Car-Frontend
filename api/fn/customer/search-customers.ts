@@ -9,12 +9,12 @@ import { RequestBuilder } from '../../request-builder';
 import { Customer } from '../../models/customer';
 import { SearchRequest } from '../../models/search-request';
 
-export interface SearchClients$Params {
+export interface SearchCustomers$Params {
   filter: SearchRequest;
 }
 
-export function searchClients(http: HttpClient, rootUrl: string, params: SearchClients$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<Customer>>> {
-  const rb = new RequestBuilder(rootUrl, searchClients.PATH, 'get');
+export function searchCustomers(http: HttpClient, rootUrl: string, params: SearchCustomers$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<Customer>>> {
+  const rb = new RequestBuilder(rootUrl, searchCustomers.PATH, 'get');
   if (params) {
     rb.query('filter', params.filter, {});
   }
@@ -29,4 +29,4 @@ export function searchClients(http: HttpClient, rootUrl: string, params: SearchC
   );
 }
 
-searchClients.PATH = '/api/customers/search-customers';
+searchCustomers.PATH = '/api/customers/search-customers';

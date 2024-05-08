@@ -8,7 +8,7 @@ import { RequestBuilder } from '../../request-builder';
 
 import { Customer } from '../../models/customer';
 
-export interface GetClientByEmail$Params {
+export interface GetCustomerByEmail$Params {
 
 /**
  * Email of the customer
@@ -16,8 +16,8 @@ export interface GetClientByEmail$Params {
   email: string;
 }
 
-export function getClientByEmail(http: HttpClient, rootUrl: string, params: GetClientByEmail$Params, context?: HttpContext): Observable<StrictHttpResponse<Customer>> {
-  const rb = new RequestBuilder(rootUrl, getClientByEmail.PATH, 'get');
+export function getCustomerByEmail(http: HttpClient, rootUrl: string, params: GetCustomerByEmail$Params, context?: HttpContext): Observable<StrictHttpResponse<Customer>> {
+  const rb = new RequestBuilder(rootUrl, getCustomerByEmail.PATH, 'get');
   if (params) {
     rb.query('email', params.email, {});
   }
@@ -32,4 +32,4 @@ export function getClientByEmail(http: HttpClient, rootUrl: string, params: GetC
   );
 }
 
-getClientByEmail.PATH = '/api/customers/findByEmail';
+getCustomerByEmail.PATH = '/api/customers/findByEmail';

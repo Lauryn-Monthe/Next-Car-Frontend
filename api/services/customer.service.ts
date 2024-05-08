@@ -13,24 +13,22 @@ import { createCustomer } from '../fn/customer/create-customer';
 import { CreateCustomer$Params } from '../fn/customer/create-customer';
 import { Customer } from '../models/customer';
 import { CustomerId } from '../models/customer-id';
-import { deleteClient } from '../fn/customer/delete-client';
-import { DeleteClient$Params } from '../fn/customer/delete-client';
-import { getClientByEmail } from '../fn/customer/get-client-by-email';
-import { GetClientByEmail$Params } from '../fn/customer/get-client-by-email';
+import { deleteCustomer } from '../fn/customer/delete-customer';
+import { DeleteCustomer$Params } from '../fn/customer/delete-customer';
+import { getCustomerByEmail } from '../fn/customer/get-customer-by-email';
+import { GetCustomerByEmail$Params } from '../fn/customer/get-customer-by-email';
 import { getCustomerById } from '../fn/customer/get-customer-by-id';
 import { GetCustomerById$Params } from '../fn/customer/get-customer-by-id';
 import { getCustomers } from '../fn/customer/get-customers';
 import { GetCustomers$Params } from '../fn/customer/get-customers';
-import { searchClients } from '../fn/customer/search-clients';
-import { SearchClients$Params } from '../fn/customer/search-clients';
-import { updateClient } from '../fn/customer/update-client';
-import { UpdateClient$Params } from '../fn/customer/update-client';
-import { updateClientStatus } from '../fn/customer/update-client-status';
-import { UpdateClientStatus$Params } from '../fn/customer/update-client-status';
+import { searchCustomers } from '../fn/customer/search-customers';
+import { SearchCustomers$Params } from '../fn/customer/search-customers';
+import { updateCustomer } from '../fn/customer/update-customer';
+import { UpdateCustomer$Params } from '../fn/customer/update-customer';
 
 
 /**
- * Manage Clients
+ * Manage Customers
  */
 @Injectable({ providedIn: 'root' })
 export class CustomerService extends BaseService {
@@ -137,8 +135,8 @@ export class CustomerService extends BaseService {
     );
   }
 
-  /** Path part for operation `updateClient()` */
-  static readonly UpdateClientPath = '/api/customers/{id}';
+  /** Path part for operation `updateCustomer()` */
+  static readonly UpdateCustomerPath = '/api/customers/{id}';
 
   /**
    * Updating a customer's account.
@@ -146,12 +144,12 @@ export class CustomerService extends BaseService {
    * Update a customer's account via the API.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `updateClient()` instead.
+   * To access only the response body, use `updateCustomer()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updateClient$Response(params: UpdateClient$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-    return updateClient(this.http, this.rootUrl, params, context);
+  updateCustomer$Response(params: UpdateCustomer$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return updateCustomer(this.http, this.rootUrl, params, context);
   }
 
   /**
@@ -160,18 +158,18 @@ export class CustomerService extends BaseService {
    * Update a customer's account via the API.
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `updateClient$Response()` instead.
+   * To access the full response (for headers, for example), `updateCustomer$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updateClient(params: UpdateClient$Params, context?: HttpContext): Observable<void> {
-    return this.updateClient$Response(params, context).pipe(
+  updateCustomer(params: UpdateCustomer$Params, context?: HttpContext): Observable<void> {
+    return this.updateCustomer$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
 
-  /** Path part for operation `deleteClient()` */
-  static readonly DeleteClientPath = '/api/customers/{id}';
+  /** Path part for operation `deleteCustomer()` */
+  static readonly DeleteCustomerPath = '/api/customers/{id}';
 
   /**
    * Deleting a customer's account.
@@ -179,12 +177,12 @@ export class CustomerService extends BaseService {
    * delete a customer's account via the API.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `deleteClient()` instead.
+   * To access only the response body, use `deleteCustomer()` instead.
    *
    * This method doesn't expect any request body.
    */
-  deleteClient$Response(params: DeleteClient$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-    return deleteClient(this.http, this.rootUrl, params, context);
+  deleteCustomer$Response(params: DeleteCustomer$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return deleteCustomer(this.http, this.rootUrl, params, context);
   }
 
   /**
@@ -193,18 +191,18 @@ export class CustomerService extends BaseService {
    * delete a customer's account via the API.
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `deleteClient$Response()` instead.
+   * To access the full response (for headers, for example), `deleteCustomer$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  deleteClient(params: DeleteClient$Params, context?: HttpContext): Observable<void> {
-    return this.deleteClient$Response(params, context).pipe(
+  deleteCustomer(params: DeleteCustomer$Params, context?: HttpContext): Observable<void> {
+    return this.deleteCustomer$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
 
-  /** Path part for operation `getClientByEmail()` */
-  static readonly GetClientByEmailPath = '/api/customers/findByEmail';
+  /** Path part for operation `getCustomerByEmail()` */
+  static readonly GetCustomerByEmailPath = '/api/customers/findByEmail';
 
   /**
    * Retrieve customer.
@@ -212,12 +210,12 @@ export class CustomerService extends BaseService {
    * Retrieve information about a customer using its email.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getClientByEmail()` instead.
+   * To access only the response body, use `getCustomerByEmail()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getClientByEmail$Response(params: GetClientByEmail$Params, context?: HttpContext): Observable<StrictHttpResponse<Customer>> {
-    return getClientByEmail(this.http, this.rootUrl, params, context);
+  getCustomerByEmail$Response(params: GetCustomerByEmail$Params, context?: HttpContext): Observable<StrictHttpResponse<Customer>> {
+    return getCustomerByEmail(this.http, this.rootUrl, params, context);
   }
 
   /**
@@ -226,51 +224,18 @@ export class CustomerService extends BaseService {
    * Retrieve information about a customer using its email.
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `getClientByEmail$Response()` instead.
+   * To access the full response (for headers, for example), `getCustomerByEmail$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getClientByEmail(params: GetClientByEmail$Params, context?: HttpContext): Observable<Customer> {
-    return this.getClientByEmail$Response(params, context).pipe(
+  getCustomerByEmail(params: GetCustomerByEmail$Params, context?: HttpContext): Observable<Customer> {
+    return this.getCustomerByEmail$Response(params, context).pipe(
       map((r: StrictHttpResponse<Customer>): Customer => r.body)
     );
   }
 
-  /** Path part for operation `updateClientStatus()` */
-  static readonly UpdateClientStatusPath = '/api/customers/{id}/update-status';
-
-  /**
-   * Updating a customer's status.
-   *
-   * Update a customer's status via the API.
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `updateClientStatus()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  updateClientStatus$Response(params: UpdateClientStatus$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-    return updateClientStatus(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * Updating a customer's status.
-   *
-   * Update a customer's status via the API.
-   *
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `updateClientStatus$Response()` instead.
-   *
-   * This method sends `application/json` and handles request body of type `application/json`.
-   */
-  updateClientStatus(params: UpdateClientStatus$Params, context?: HttpContext): Observable<void> {
-    return this.updateClientStatus$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
-    );
-  }
-
-  /** Path part for operation `searchClients()` */
-  static readonly SearchClientsPath = '/api/customers/search-customers';
+  /** Path part for operation `searchCustomers()` */
+  static readonly SearchCustomersPath = '/api/customers/search-customers';
 
   /**
    * Retrieve customers.
@@ -278,12 +243,12 @@ export class CustomerService extends BaseService {
    * Get list of customers using its lastname or city.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `searchClients()` instead.
+   * To access only the response body, use `searchCustomers()` instead.
    *
    * This method doesn't expect any request body.
    */
-  searchClients$Response(params: SearchClients$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<Customer>>> {
-    return searchClients(this.http, this.rootUrl, params, context);
+  searchCustomers$Response(params: SearchCustomers$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<Customer>>> {
+    return searchCustomers(this.http, this.rootUrl, params, context);
   }
 
   /**
@@ -292,12 +257,12 @@ export class CustomerService extends BaseService {
    * Get list of customers using its lastname or city.
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `searchClients$Response()` instead.
+   * To access the full response (for headers, for example), `searchCustomers$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  searchClients(params: SearchClients$Params, context?: HttpContext): Observable<Array<Customer>> {
-    return this.searchClients$Response(params, context).pipe(
+  searchCustomers(params: SearchCustomers$Params, context?: HttpContext): Observable<Array<Customer>> {
+    return this.searchCustomers$Response(params, context).pipe(
       map((r: StrictHttpResponse<Array<Customer>>): Array<Customer> => r.body)
     );
   }

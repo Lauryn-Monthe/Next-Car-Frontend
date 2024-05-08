@@ -6,15 +6,15 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { Status } from '../../models/status';
+import { CustomerRequest } from '../../models/customer-request';
 
-export interface UpdateClientStatus$Params {
+export interface UpdateCustomer$Params {
   id: string;
-      body: Status
+      body: CustomerRequest
 }
 
-export function updateClientStatus(http: HttpClient, rootUrl: string, params: UpdateClientStatus$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-  const rb = new RequestBuilder(rootUrl, updateClientStatus.PATH, 'put');
+export function updateCustomer(http: HttpClient, rootUrl: string, params: UpdateCustomer$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, updateCustomer.PATH, 'put');
   if (params) {
     rb.path('id', params.id, {});
     rb.body(params.body, 'application/json');
@@ -30,4 +30,4 @@ export function updateClientStatus(http: HttpClient, rootUrl: string, params: Up
   );
 }
 
-updateClientStatus.PATH = '/api/customers/{id}/update-status';
+updateCustomer.PATH = '/api/customers/{id}';
