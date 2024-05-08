@@ -6,9 +6,9 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { Customer } from '../../models/customer';
+import { Driver } from '../../models/driver';
 
-export interface GetPatientByEmail$Params {
+export interface GetDriverByEmail$Params {
 
 /**
  * Email of the driver
@@ -16,8 +16,8 @@ export interface GetPatientByEmail$Params {
   email: string;
 }
 
-export function getPatientByEmail(http: HttpClient, rootUrl: string, params: GetPatientByEmail$Params, context?: HttpContext): Observable<StrictHttpResponse<Customer>> {
-  const rb = new RequestBuilder(rootUrl, getPatientByEmail.PATH, 'get');
+export function getDriverByEmail(http: HttpClient, rootUrl: string, params: GetDriverByEmail$Params, context?: HttpContext): Observable<StrictHttpResponse<Driver>> {
+  const rb = new RequestBuilder(rootUrl, getDriverByEmail.PATH, 'get');
   if (params) {
     rb.query('email', params.email, {});
   }
@@ -27,9 +27,9 @@ export function getPatientByEmail(http: HttpClient, rootUrl: string, params: Get
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Customer>;
+      return r as StrictHttpResponse<Driver>;
     })
   );
 }
 
-getPatientByEmail.PATH = '/api/drivers/findByEmail';
+getDriverByEmail.PATH = '/api/drivers/findByEmail';

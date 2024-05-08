@@ -2,8 +2,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { CustomerService } from '../../../../api/services';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
-import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
-import { DatePipe } from '@angular/common';
+import { NgbDateAdapter, NgbDateParserFormatter, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDateParserFormatter, stringToDate } from '../../shared/customDateParserFormatter';
 import { CustomAdapter } from '../../shared/customAdapter';
 
@@ -20,8 +19,11 @@ import { CustomAdapter } from '../../shared/customAdapter';
 })
 export class CustomerComponent implements OnInit {
   customerForm: FormGroup;
+  type: string = "password";
+  isText: boolean = false;
+  eyeIcon: string = "fa-eye-slash"
 
-  constructor(private fb: FormBuilder, readonly customerService: CustomerService, public datepipe: DatePipe) {
+  constructor(private fb: FormBuilder, readonly customerService: CustomerService) {
     this. customerForm = this.fb.group({
       lastname: [null, Validators.required],
       firstname: [null, Validators.required],
@@ -39,6 +41,12 @@ export class CustomerComponent implements OnInit {
   }
   ngOnInit(): void {
    
+  }
+
+  hideShowPassword() {
+    this.isText = !this.isText;
+    this.isText ? this.eyeIcon = "fa-eye" : this.eyeIcon = "fa-eye-slash";
+    this.isText ? this.type = "text" : this.type = "password";
   }
 
   createCustomer() {

@@ -11,17 +11,16 @@ import { StrictHttpResponse } from '../strict-http-response';
 
 import { createDriver } from '../fn/driver/create-driver';
 import { CreateDriver$Params } from '../fn/driver/create-driver';
-import { Customer } from '../models/customer';
 import { deleteDriver } from '../fn/driver/delete-driver';
 import { DeleteDriver$Params } from '../fn/driver/delete-driver';
 import { Driver } from '../models/driver';
 import { DriverId } from '../models/driver-id';
+import { getDriverByEmail } from '../fn/driver/get-driver-by-email';
+import { GetDriverByEmail$Params } from '../fn/driver/get-driver-by-email';
 import { getDriverById } from '../fn/driver/get-driver-by-id';
 import { GetDriverById$Params } from '../fn/driver/get-driver-by-id';
 import { getDrivers } from '../fn/driver/get-drivers';
 import { GetDrivers$Params } from '../fn/driver/get-drivers';
-import { getPatientByEmail } from '../fn/driver/get-patient-by-email';
-import { GetPatientByEmail$Params } from '../fn/driver/get-patient-by-email';
 import { updateDriver } from '../fn/driver/update-driver';
 import { UpdateDriver$Params } from '../fn/driver/update-driver';
 import { updateDriverStatus } from '../fn/driver/update-driver-status';
@@ -202,8 +201,8 @@ export class DriverService extends BaseService {
     );
   }
 
-  /** Path part for operation `getPatientByEmail()` */
-  static readonly GetPatientByEmailPath = '/api/drivers/findByEmail';
+  /** Path part for operation `getDriverByEmail()` */
+  static readonly GetDriverByEmailPath = '/api/drivers/findByEmail';
 
   /**
    * Retrieve driver.
@@ -211,12 +210,12 @@ export class DriverService extends BaseService {
    * Retrieve information about a driver using its email.
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getPatientByEmail()` instead.
+   * To access only the response body, use `getDriverByEmail()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getPatientByEmail$Response(params: GetPatientByEmail$Params, context?: HttpContext): Observable<StrictHttpResponse<Customer>> {
-    return getPatientByEmail(this.http, this.rootUrl, params, context);
+  getDriverByEmail$Response(params: GetDriverByEmail$Params, context?: HttpContext): Observable<StrictHttpResponse<Driver>> {
+    return getDriverByEmail(this.http, this.rootUrl, params, context);
   }
 
   /**
@@ -225,13 +224,13 @@ export class DriverService extends BaseService {
    * Retrieve information about a driver using its email.
    *
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `getPatientByEmail$Response()` instead.
+   * To access the full response (for headers, for example), `getDriverByEmail$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  getPatientByEmail(params: GetPatientByEmail$Params, context?: HttpContext): Observable<Customer> {
-    return this.getPatientByEmail$Response(params, context).pipe(
-      map((r: StrictHttpResponse<Customer>): Customer => r.body)
+  getDriverByEmail(params: GetDriverByEmail$Params, context?: HttpContext): Observable<Driver> {
+    return this.getDriverByEmail$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Driver>): Driver => r.body)
     );
   }
 

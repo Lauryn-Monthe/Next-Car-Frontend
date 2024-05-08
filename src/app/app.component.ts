@@ -7,7 +7,7 @@ import { CustomerComponent } from './components/customer/customer.component';
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [RouterOutlet, RouterLink, CustomerComponent]
+    imports: [RouterOutlet, RouterLink]
 })
 export class AppComponent {
   title = 'NextCar-Frontend';

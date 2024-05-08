@@ -9,5 +9,6 @@ export interface CustomerRequest {
   firstname: string;
   gender: Gender;
   lastname: string;
+  password: string;
   phoneNumber: string;
 }
