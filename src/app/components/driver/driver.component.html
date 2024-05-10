@@ -4,14 +4,14 @@
             <div class="offset-md-2 col-lg-7 col-md-7 offset-lg-3 offset-md-3">
                 <div class="panel border bg-white">
                     <div class="panel-heading">
-                        <h3 class="pt-3 font-weight-bold">Sign up as customer</h3>
+                        <h3 class="pt-3 font-weight-bold">Sign up as driver</h3>
                     </div>
                     <div class="panel-body p-3">
                         <form class="form" [formGroup]="driverForm">
                             <div class="row">
                                 <div class="col-md-6 form-group pt-3">
                                     <div class="input-field">
-                                        <span class="fa fa-user p-2"></span>
+                                        <span class="fa fa-user px-2"></span>
                                         <input type="text" id="lastname" 
                                         formControlName="lastname" 
                                         placeholder="Lastname">
@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="col-md-6 form-group pt-3">
                                     <div class="input-field">
-                                        <span class="fa fa-user p-2"></span>
+                                        <span class="fa fa-user px-2"></span>
                                         <input type="text" id="firstname" 
                                         formControlName="firstname" 
                                         placeholder="Firstname">
@@ -29,7 +29,7 @@
                             <div class="row">
                                 <div class="col-md-6 form-group pt-3">
                                     <div class="input-field">
-                                        <span class="fa fa-solid fa-envelope p-2"></span>
+                                        <span class="fa fa-solid fa-envelope px-2"></span>
                                         <input type="text" id="email1" 
                                         formControlName="email" 
                                         placeholder="Email" placeholder="Email">
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="col-md-6 form-group pt-3">
                                     <div class="input-field">
-                                        <span class="fa fa-lock p-2"></span>
+                                        <span class="fa fa-lock px-2"></span>
                                         <input [type]="type" placeholder="Password" formControlName="password">
                                         <span (click)="hideShowPassword()" class="fa {{eyeIcon}}"></span>
                                     </div>
@@ -47,7 +47,7 @@
                             <div class="row">
                                 <div class="col-md-6 form-group pt-3">
                                     <div class="input-field">
-                                        <span class="fa fa-solid fa-envelope p-2"></span>
+                                        <span class="fa fa-solid fa-envelope px-2"></span>
                                         <input type="text" id="email2" 
                                         formControlName="email" 
                                         placeholder="Email" placeholder="Repeat email">
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="col-md-6 form-group pt-3">
                                     <div class="input-field">
-                                        <span class="fa fa-lock p-2"></span>
+                                        <span class="fa fa-lock px-2"></span>
                                         <input [type]="type" placeholder="Repeat password" formControlName="password">
                                         <span (click)="hideShowPassword()" class="fa {{eyeIcon}}"></span>
                                     </div>
@@ -64,42 +64,43 @@
 
                             <div class="row">
                                 <div class="col-md-6 form-group pt-3">
-                                    <div class="input-field">
-                                        <span class="fa fa-solid fa-venus-mars p-2"></span>
-                                        <select class="form-select" id="gender" formControlName="gender" placeholder="Gender">
-                                            <option selected>Gender</option>
-                                            <option value="1">MR</option>
-                                            <option value="2">MS</option>
-                                            <option value="3">UNKNOW</option>
-                                          </select>
-                                    </div>
+                                    <select class="form-select" id="gender" formControlName="gender" placeholder="Gender">
+                                        <option selected>Gender</option>
+                                        <option value="1">MR</option>
+                                        <option value="2">MS</option>
+                                        <option value="3">UNKNOW</option>
+                                      </select>
                                 </div>
                                 <div class="col-md-6 form-group pt-3">
                                     <div class="input-field">
-                                        <input class="form-control"
+                                        <span class="fa fa-regular fa-calendar px-2" type="button" (click)="d.toggle()"></span>
+                                        <input
                                          type="text" 
                                          ngbDatepicker 
                                          #d="ngbDatepicker" 
                                          id="birthday"
                                          formControlName="birthday" 
                                          placeholder="Birthday (dd/mm/yyyy)">
-                                    <span class="fa fa-regular fa-calendar" type="button" (click)="d.toggle()"></span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6 form-group pt-3">
-                                    <div class="input-field">
-                                        <span class="fa fa-solid fa-phone p-2"></span>
-                                    <input type="text" id="phoneNumber" 
-                                    formControlName="phoneNumber" 
-                                    placeholder="Phone">
+                                    <div class="input-group">
+                                        <select class="form-select" formControlName="phonecode" >
+                                            @for (country of listCountry; track country.phonecode) {
+                                                <option [value]="country.phonecode">{{country.emoji}}{{country.iso3}}</option>
+                                              }
+                                        </select>
+                                        <input class="input-field" type="tel" id="phoneNumber" 
+                                                 formControlName="phoneNumber" 
+                                                 placeholder="Phone number">
                                     </div>
                                 </div>
                                 <div class="col-md-6 form-group pt-3">
                                     <div class="input-field">
-                                        <span class="fa fa-solid fa-car p-2"></span>
+                                        <span class="fa fa-solid fa-car px-2"></span>
                                     <input type="text" id="carName" 
                                     formControlName="carName" 
                                     placeholder="Car">
@@ -112,7 +113,7 @@
                                 <div class="row">
                                     <div class="col-md-6 form-group pt-3">
                                         <div class="input-field">
-                                            <span class="fa fa-solid fa-location-dot p-2"></span>
+                                            <span class="fa fa-solid fa-location-dot px-2"></span>
                                             <input type="text" id="streetAndNumber" 
                                             formControlName="streetAndNumber" 
                                             placeholder="Street and number">
@@ -120,7 +121,7 @@
                                     </div>
                                         <div class="col-md-6 form-group pt-3">
                                             <div class="input-field">
-                                                <span class="fa fa-solid fa-location-dot p-2"></span>
+                                                <span class="fa fa-solid fa-location-dot px-2"></span>
                                             <input type="text" id="postalCode" 
                                             formControlName="postalCode" 
                                             placeholder="Postal Code">
@@ -129,16 +130,15 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 form-group pt-3">
-                                        <div class="input-field">
-                                            <span class="fa fa-solid fa-location-dot p-2"></span>
-                                            <input type="text" id="country" 
-                                            formControlName="country" 
-                                            placeholder="Country">
-                                        </div>
+                                        <select class="form-select" id="country" formControlName="country" placeholder="Country">
+                                            @for (country of listCountry; track country.name) {
+                                                <option [value]="country.name">{{country.name}}</option>
+                                              }
+                                          </select>
                                     </div>
                                     <div class="col-md-6 form-group pt-3">
                                         <div class="input-field">
-                                            <span class="fa fa-solid fa-location-dot p-2"></span>
+                                            <span class="fa fa-solid fa-location-dot px-2"></span>
                                             <input type="text" id="city" formControlName="city" placeholder="City">
                                         </div>
                                     </div>
