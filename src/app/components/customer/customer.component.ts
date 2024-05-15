@@ -1,7 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { CustomerService } from '../../../../api/services';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SharedModule } from '../../shared/shared.module';
 import { NgbDateAdapter, NgbDateParserFormatter, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { CustomDateParserFormatter, stringToDate } from '../../shared/customDateParserFormatter';
 import { CustomAdapter } from '../../shared/customAdapter';
@@ -10,7 +9,7 @@ import { RouterEvent, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-customer',
   standalone: true,
-  imports: [ReactiveFormsModule, SharedModule, NgbDatepickerModule, RouterLink],
+  imports: [ReactiveFormsModule, NgbDatepickerModule, RouterLink],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.scss',
   providers: [
@@ -42,7 +41,7 @@ export class CustomerComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-   
+
   }
 
   hideShowPassword() {
@@ -66,7 +65,7 @@ export class CustomerComponent implements OnInit {
     };
     this.customerService.createCustomer({body: body}).subscribe(value => {
       console.log(value);
-      
+
     });
   }
 

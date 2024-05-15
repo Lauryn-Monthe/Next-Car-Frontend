@@ -1,30 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SharedModule } from '../../shared/shared.module';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterLink } from '@angular/router';
 import { DriverService } from '../../../../api/services';
 import { stringToDate } from '../../shared/customDateParserFormatter';
 import { Country } from '../../model/country';
-import { CountryService } from '../services/country-service';
+import { Store, select } from '@ngrx/store';
+import { CountryActions } from '../../state/actions/login-page.actions';
+import { Observable } from 'rxjs';
+import { AppState } from '../../state/appState';
+import { CommonModule } from '@angular/common';
+import { getCountryList, getIsLoaded } from '../../state/selectors/login-page.selector';
 
 @Component({
   selector: 'driver',
   standalone: true,
-  imports: [ReactiveFormsModule, SharedModule, NgbDatepickerModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, NgbDatepickerModule, RouterLink],
   templateUrl: './driver.component.html',
   styleUrl: './driver.component.scss'
 })
-export class DriverComponent {
+export class DriverComponent implements OnInit{
   driverForm: FormGroup;
   type: string = "password";
   isText: boolean = false;
-  eyeIcon: string = "fa-eye-slash"
-  listCountry!: Country[];
-  countrySelected!: string;
+  eyeIcon: string = "fa-eye-slash";
+  countryList$: Observable<Country[]>;
+  countrySelected: string;
+  isLoaded$: Observable<boolean>;
 
-  constructor(private fb: FormBuilder, readonly driverService: DriverService,
-              private countryService: CountryService) {
+  constructor(private fb: FormBuilder, readonly driverService: DriverService, private store: Store<AppState>) {
     this.driverForm = this.fb.group({
       lastname: [null, Validators.required],
       firstname: [null, Validators.required],
@@ -43,29 +47,20 @@ export class DriverComponent {
       })
     })
   }
+
   ngOnInit(): void {
-    this.fetchCountry();
-    this.driverForm.controls['phonecode'].setValue("49");
-    this.driverForm.controls['phoneNumber'].setValue('+49');
-    this.driverForm.valueChanges.subscribe(value => {
-      if (value.phonecode !== null) {
-         this.driverForm.controls['phoneNumber'].setValue('+'+value.phonecode);
-      }
-    }).unsubscribe;
+    this.store.dispatch(CountryActions.fetchCountries());
+    this.countryList$ = this.store.pipe(select((getCountryList)));
+    this.isLoaded$ = this.store.pipe(select((getIsLoaded)));
+    this.countryList$?.subscribe(val => {
+      console.log('++++++++',val);
+    });
   }
 
   hideShowPassword() {
     this.isText = !this.isText;
     this.isText ? this.eyeIcon = "fa-eye" : this.eyeIcon = "fa-eye-slash";
     this.isText ? this.type = "text" : this.type = "password";
-  }
-
-  private fetchCountry(){
-    this.countryService.getCountry().subscribe(data=>{
-    this.listCountry = data
-    console.log('Countries fetched', this.listCountry)
-    })
-  
   }
 
   createDriver() {

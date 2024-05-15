@@ -12,16 +12,16 @@
                                 <div class="col-md-6 form-group pt-3">
                                     <div class="input-field">
                                         <span class="fa fa-user px-2"></span>
-                                        <input type="text" id="lastname" 
-                                        formControlName="lastname" 
+                                        <input type="text" id="lastname"
+                                        formControlName="lastname"
                                         placeholder="Lastname">
                                     </div>
                                 </div>
                                 <div class="col-md-6 form-group pt-3">
                                     <div class="input-field">
                                         <span class="fa fa-user px-2"></span>
-                                        <input type="text" id="firstname" 
-                                        formControlName="firstname" 
+                                        <input type="text" id="firstname"
+                                        formControlName="firstname"
                                         placeholder="Firstname">
                                     </div>
                                 </div>
@@ -30,8 +30,8 @@
                                 <div class="col-md-6 form-group pt-3">
                                     <div class="input-field">
                                         <span class="fa fa-solid fa-envelope px-2"></span>
-                                        <input type="text" id="email1" 
-                                        formControlName="email" 
+                                        <input type="text" id="email1"
+                                        formControlName="email"
                                         placeholder="Email" placeholder="Email">
                                     </div>
                                 </div>
@@ -48,8 +48,8 @@
                                 <div class="col-md-6 form-group pt-3">
                                     <div class="input-field">
                                         <span class="fa fa-solid fa-envelope px-2"></span>
-                                        <input type="text" id="email2" 
-                                        formControlName="email" 
+                                        <input type="text" id="email2"
+                                        formControlName="email"
                                         placeholder="Email" placeholder="Repeat email">
                                     </div>
                                 </div>
@@ -75,11 +75,11 @@
                                     <div class="input-field">
                                         <span class="fa fa-regular fa-calendar px-2" type="button" (click)="d.toggle()"></span>
                                         <input
-                                         type="text" 
-                                         ngbDatepicker 
-                                         #d="ngbDatepicker" 
+                                         type="text"
+                                         ngbDatepicker
+                                         #d="ngbDatepicker"
                                          id="birthday"
-                                         formControlName="birthday" 
+                                         formControlName="birthday"
                                          placeholder="Birthday (dd/mm/yyyy)">
                                     </div>
                                 </div>
@@ -88,53 +88,62 @@
                             <div class="row">
                                 <div class="col-md-6 form-group pt-3">
                                     <div class="input-group">
-                                        <select class="form-select" formControlName="phonecode" >
-                                            @for (country of listCountry; track country.phonecode) {
+                                        @if ((isLoaded$ | async) === true) {
+                                          <select class="form-select" formControlName="phonecode" >
+                                            @for (country of countryList$ | async; track country.phonecode) {
                                                 <option [value]="country.phonecode">{{country.emoji}}{{country.iso3}}</option>
                                               }
                                         </select>
-                                        <input class="input-field" type="tel" id="phoneNumber" 
-                                                 formControlName="phoneNumber" 
+                                        }
+                                        @else if ((isLoaded$ | async) === false) {
+                                          <div class="spinner-border" role="status">
+                                            <span class="visually-hidden">Loading ...</span>
+                                          </div>
+                                        }
+                                        <input class="input-field" type="tel" id="phoneNumber"
+                                                 formControlName="phoneNumber"
                                                  placeholder="Phone number">
                                     </div>
                                 </div>
                                 <div class="col-md-6 form-group pt-3">
                                     <div class="input-field">
                                         <span class="fa fa-solid fa-car px-2"></span>
-                                    <input type="text" id="carName" 
-                                    formControlName="carName" 
+                                    <input type="text" id="carName"
+                                    formControlName="carName"
                                     placeholder="Car">
                                     </div>
                                 </div>
                             </div>
-                        
+
                             <h4 class="pt-3 font-weight-bold">Address</h4>
                             <div formGroupName="address">
                                 <div class="row">
                                     <div class="col-md-6 form-group pt-3">
                                         <div class="input-field">
                                             <span class="fa fa-solid fa-location-dot px-2"></span>
-                                            <input type="text" id="streetAndNumber" 
-                                            formControlName="streetAndNumber" 
+                                            <input type="text" id="streetAndNumber"
+                                            formControlName="streetAndNumber"
                                             placeholder="Street and number">
                                         </div>
                                     </div>
                                         <div class="col-md-6 form-group pt-3">
                                             <div class="input-field">
                                                 <span class="fa fa-solid fa-location-dot px-2"></span>
-                                            <input type="text" id="postalCode" 
-                                            formControlName="postalCode" 
+                                            <input type="text" id="postalCode"
+                                            formControlName="postalCode"
                                             placeholder="Postal Code">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 form-group pt-3">
-                                        <select class="form-select" id="country" formControlName="country" placeholder="Country">
-                                            @for (country of listCountry; track country.name) {
+                                        @if ((isLoaded$ | async) === true) {
+                                          <select class="form-select" id="country" formControlName="country" placeholder="Country">
+                                            @for (country of countryList$ | async; track country.name) {
                                                 <option [value]="country.name">{{country.name}}</option>
                                               }
                                           </select>
+                                        }
                                     </div>
                                     <div class="col-md-6 form-group pt-3">
                                         <div class="input-field">
@@ -143,7 +152,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
 
                             <button type="submit" class="btn btn-primary btn-block mt-4 w-100" (click)="createDriver">Sign up</button>
                             <div class="text-center pt-4 text-muted mb-2">Already have account? <br> <br>
