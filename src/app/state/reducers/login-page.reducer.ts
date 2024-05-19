@@ -1,9 +1,11 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { AppState } from "../appState";
-import {CountryActions} from "../actions/login-page.actions";
+import {CountryActions, DriverActions} from "../actions/login-page.actions";
 
 const initialState: AppState = {
-  countryList: []
+  countryList: [],
+  customerId: null,
+  driverId: null
 };
 
 export const countryListReducer = createReducer<AppState, Action>(
@@ -22,3 +24,21 @@ initialState,
     }
   })
 );
+
+
+export const driverReducer = createReducer<AppState, Action>(
+  initialState,
+    on(DriverActions.createDriver, (state) => {
+      return {
+        ...state,
+        loaded: false
+      }
+    }),
+    on(DriverActions.createDriverSuccess, (state, props) => {
+      return {
+        ...state,
+        loaded: true,
+        driver: props.id
+      }
+    })
+  );

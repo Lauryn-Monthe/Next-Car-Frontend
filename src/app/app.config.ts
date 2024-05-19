@@ -8,7 +8,8 @@ import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { LoginEffects } from './state/effects/login-page.effects';
-import { countryListReducer } from './state/reducers/login-page.reducer';
+import { countryListReducer, driverReducer } from './state/reducers/login-page.reducer';
+import { DriverEffects } from './state/effects/driver.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,7 +18,11 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideStore(),
     provideState(
-      {name: 'Appstate', reducer: countryListReducer}),
-    provideEffects([LoginEffects]),
+      {name: 'Appstate', reducer: countryListReducer},
+    ),
+    provideState(
+      {name: 'Appstate', reducer: driverReducer},
+    ),
+    provideEffects([LoginEffects, DriverEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })]
 };
