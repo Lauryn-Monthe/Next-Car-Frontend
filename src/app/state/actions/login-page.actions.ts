@@ -1,7 +1,7 @@
 import { createActionGroup, emptyProps, props } from "@ngrx/store";
 import { Country } from "../../model/country";
 import { HttpErrorResponse } from "@angular/common/http";
-import { Customer, Driver, DriverId } from "../../../../api/models";
+import { Customer, CustomerId, Driver, DriverId } from "../../../../api/models";
 
 /* export const fetchCountry = createAction('[Login Page] Fetch country');
 
@@ -26,7 +26,10 @@ export const CustomerActions = createActionGroup({
     'Get customer by id failure': props<{error: HttpErrorResponse | Error}>(),
     'Get customers': emptyProps(),
     'Get customers success': props<{customerList: Customer[]}>(),
-    'Get customers failure': props<{error: HttpErrorResponse | Error}>()
+    'Get customers failure': props<{error: HttpErrorResponse | Error}>(),
+    'Create customer': props<{customer: Customer}>(),
+    'Create customer success': props<{id: CustomerId}>(),
+    'Create customer failure': props<{error: HttpErrorResponse | Error}>()
   }
 });
 

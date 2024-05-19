@@ -7,7 +7,7 @@ import { CustomAdapter } from '../../shared/customAdapter';
 import { RouterLink } from '@angular/router';
 import { AppState } from '../../state/appState';
 import { Store, select } from '@ngrx/store';
-import { CountryActions } from '../../state/actions/login-page.actions';
+import { CountryActions, CustomerActions } from '../../state/actions/login-page.actions';
 import { getCountryList, getIsLoaded } from '../../state/selectors/login-page.selector';
 import { Country } from '../../model/country';
 import { Observable } from 'rxjs';
@@ -78,10 +78,7 @@ export class CustomerComponent implements OnInit {
       address: value.address,
       password: value.password
     };
-    this.customerService.createCustomer({body: body}).subscribe(value => {
-      console.log(value);
-
-    });
+    this.store.dispatch(CustomerActions.createCustomer({customer: body}));
   }
 
 }

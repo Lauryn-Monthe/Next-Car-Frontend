@@ -76,6 +76,6 @@ export class DriverComponent implements OnInit{
       password: value.password,
       carName: value.carName
     };
-    this.store.dispatch(DriverActions.createDriver({driver: body}))
+    this.store.dispatch(DriverActions.createDriver({driver: body}));
   }
 }
