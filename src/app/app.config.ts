@@ -10,6 +10,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { LoginEffects } from './state/effects/login-page.effects';
 import { apiReducer, countryListReducer } from './state/reducers/login-page.reducer';
 import { DriverEffects } from './state/effects/driver.effects';
+import { CustomerEffects } from './state/effects/customer.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,6 +24,6 @@ export const appConfig: ApplicationConfig = {
     provideState(
       {name: 'Appstate', reducer: apiReducer},
     ),
-    provideEffects([LoginEffects, DriverEffects]),
+    provideEffects([LoginEffects, DriverEffects, CustomerEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })]
 };
