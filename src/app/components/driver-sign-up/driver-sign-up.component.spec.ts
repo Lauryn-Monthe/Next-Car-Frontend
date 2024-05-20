@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DriverSignUpComponent } from './driver-sign-up.component';
 
-import { DriverComponent } from './driver.component';
 
-describe('SignUpComponent', () => {
-  let component: DriverComponent;
-  let fixture: ComponentFixture<DriverComponent>;
+describe('DriverSignUpComponent', () => {
+  let component: DriverSignUpComponent;
+  let fixture: ComponentFixture<DriverSignUpComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DriverComponent]
+      imports: [DriverSignUpComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DriverComponent);
+    fixture = TestBed.createComponent(DriverSignUpComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -21,4 +21,3 @@ describe('SignUpComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-

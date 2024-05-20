@@ -1,0 +1,170 @@
+<div class="outer">
+  <div class="container">
+      <div class="row">
+          <div class="offset-md-2 col-lg-7 col-md-7 offset-lg-3 offset-md-3">
+              <div class="panel border bg-white">
+                  <div class="panel-heading">
+                      <h3 class="pt-3 font-weight-bold">Sign up as driver</h3>
+                  </div>
+                  <div class="panel-body p-3">
+                      <form class="form" [formGroup]="driverForm">
+                          <div class="row">
+                              <div class="col-md-6 form-group pt-3">
+                                  <div class="input-field">
+                                      <span class="fa fa-user px-2"></span>
+                                      <input type="text" id="lastname"
+                                      formControlName="lastname"
+                                      placeholder="Lastname">
+                                  </div>
+                              </div>
+                              <div class="col-md-6 form-group pt-3">
+                                  <div class="input-field">
+                                      <span class="fa fa-user px-2"></span>
+                                      <input type="text" id="firstname"
+                                      formControlName="firstname"
+                                      placeholder="Firstname">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6 form-group pt-3">
+                                  <div class="input-field">
+                                      <span class="fa fa-solid fa-envelope px-2"></span>
+                                      <input type="text" id="email1"
+                                      formControlName="email"
+                                      placeholder="Email" placeholder="Email">
+                                  </div>
+                              </div>
+                              <div class="col-md-6 form-group pt-3">
+                                  <div class="input-field">
+                                      <span class="fa fa-lock px-2"></span>
+                                      <input [type]="type" placeholder="Password" formControlName="password">
+                                      <span (click)="hideShowPassword()" class="fa {{eyeIcon}}"></span>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="row">
+                              <div class="col-md-6 form-group pt-3">
+                                  <div class="input-field">
+                                      <span class="fa fa-solid fa-envelope px-2"></span>
+                                      <input type="text" id="email2"
+                                      formControlName="email"
+                                      placeholder="Email" placeholder="Repeat email">
+                                  </div>
+                              </div>
+                              <div class="col-md-6 form-group pt-3">
+                                  <div class="input-field">
+                                      <span class="fa fa-lock px-2"></span>
+                                      <input [type]="type" placeholder="Repeat password" formControlName="password">
+                                      <span (click)="hideShowPassword()" class="fa {{eyeIcon}}"></span>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="row">
+                              <div class="col-md-6 form-group pt-3">
+                                <div class="input-field">
+                                  <span class="fa fa-solid fa-venus-mars p-2"></span>
+                                  <select class="form-select" id="gender" formControlName="gender" placeholder="Gender">
+                                      <option value="MR">MR</option>
+                                      <option value="MS">MS</option>
+                                      <option value="UNKNOW">UNKNOW</option>
+                                    </select>
+                              </div>
+                              </div>
+                              <div class="col-md-6 form-group pt-3">
+                                  <div class="input-field">
+                                      <span class="fa fa-regular fa-calendar px-2" type="button" (click)="d.toggle()"></span>
+                                      <input
+                                       type="text"
+                                       ngbDatepicker
+                                       #d="ngbDatepicker"
+                                       id="birthday"
+                                       formControlName="birthday"
+                                       placeholder="Birthday (dd/mm/yyyy)">
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="row">
+                              <div class="col-md-6 form-group pt-3">
+                                  <div class="input-group">
+                                      @if ((isLoaded$ | async) === true) {
+                                        <select class="form-select" formControlName="phonecode" >
+                                          @for (country of countryList$ | async; track country.phonecode) {
+                                              <option [value]="country.phonecode">{{country.emoji}}+{{country.phonecode}}</option>
+                                            }
+                                      </select>
+                                      }
+                                      @else if ((isLoaded$ | async) === false) {
+                                        <div class="spinner-border" role="status">
+                                          <span class="visually-hidden">Loading ...</span>
+                                        </div>
+                                      }
+                                      <input class="input-field" type="tel" id="phoneNumber"
+                                               formControlName="phoneNumber"
+                                               placeholder="Phone number">
+                                  </div>
+                              </div>
+                              <div class="col-md-6 form-group pt-3">
+                                  <div class="input-field">
+                                      <span class="fa fa-solid fa-car px-2"></span>
+                                  <input type="text" id="carName"
+                                  formControlName="carName"
+                                  placeholder="Car">
+                                  </div>
+                              </div>
+                          </div>
+
+                          <h4 class="pt-3 font-weight-bold">Address</h4>
+                          <div formGroupName="address">
+                              <div class="row">
+                                  <div class="col-md-6 form-group pt-3">
+                                      <div class="input-field">
+                                          <span class="fa fa-solid fa-location-dot px-2"></span>
+                                          <input type="text" id="streetAndNumber"
+                                          formControlName="streetAndNumber"
+                                          placeholder="Street and number">
+                                      </div>
+                                  </div>
+                                      <div class="col-md-6 form-group pt-3">
+                                          <div class="input-field">
+                                              <span class="fa fa-solid fa-location-dot px-2"></span>
+                                          <input type="text" id="postalCode"
+                                          formControlName="postalCode"
+                                          placeholder="Postal Code">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-6 form-group pt-3">
+                                      @if ((isLoaded$ | async) === true) {
+                                        <select class="form-select" id="country" formControlName="country" placeholder="Country">
+                                          @for (country of countryList$ | async; track country.name) {
+                                              <option [value]="country.name">{{country.name}}</option>
+                                            }
+                                        </select>
+                                      }
+                                  </div>
+                                  <div class="col-md-6 form-group pt-3">
+                                      <div class="input-field">
+                                          <span class="fa fa-solid fa-location-dot px-2"></span>
+                                          <input type="text" id="city" formControlName="city" placeholder="City">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <button type="submit" class="btn btn-primary btn-block mt-4 w-100" (click)="createDriver()">Sign up</button>
+                          <div class="text-center pt-4 text-muted mb-2">Already have account? <br> <br>
+                              <a id="forget" routerLink="/home">Login</a>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+

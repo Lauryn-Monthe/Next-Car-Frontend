@@ -103,7 +103,7 @@ export class CustomerService extends BaseService {
   }
 
   /** Path part for operation `getCustomerById()` */
-  static readonly GetCustomerByIdPath = '/api/customers/{id}';
+  static readonly GetCustomerByIdPath = '/api/customers/{customerId}';
 
   /**
    * Retrieve customer.
@@ -136,7 +136,7 @@ export class CustomerService extends BaseService {
   }
 
   /** Path part for operation `updateCustomer()` */
-  static readonly UpdateCustomerPath = '/api/customers/{id}';
+  static readonly UpdateCustomerPath = '/api/customers/{customerId}';
 
   /**
    * Updating a customer's account.
@@ -169,7 +169,7 @@ export class CustomerService extends BaseService {
   }
 
   /** Path part for operation `deleteCustomer()` */
-  static readonly DeleteCustomerPath = '/api/customers/{id}';
+  static readonly DeleteCustomerPath = '/api/customers/{customerId}';
 
   /**
    * Deleting a customer's account.

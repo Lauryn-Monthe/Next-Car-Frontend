@@ -9,14 +9,14 @@ import { RequestBuilder } from '../../request-builder';
 import { CustomerRequest } from '../../models/customer-request';
 
 export interface UpdateCustomer$Params {
-  id: string;
+  customerId: string;
       body: CustomerRequest
 }
 
 export function updateCustomer(http: HttpClient, rootUrl: string, params: UpdateCustomer$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
   const rb = new RequestBuilder(rootUrl, updateCustomer.PATH, 'put');
   if (params) {
-    rb.path('id', params.id, {});
+    rb.path('customerId', params.customerId, {});
     rb.body(params.body, 'application/json');
   }
 
@@ -30,4 +30,4 @@ export function updateCustomer(http: HttpClient, rootUrl: string, params: Update
   );
 }
 
-updateCustomer.PATH = '/api/customers/{id}';
+updateCustomer.PATH = '/api/customers/{customerId}';

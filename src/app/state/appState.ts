@@ -1,4 +1,4 @@
-import { CustomerId, DriverId } from "../../../api/models";
+import { Customer, CustomerId, Driver, DriverId } from "../../../api/models";
 import { Country } from "../model/country";
 
 export interface AppState {
@@ -6,4 +6,6 @@ export interface AppState {
   loaded?: boolean;
   customerId?: CustomerId;
   driverId?: DriverId;
+  customer: Customer;
+  driver: Driver;
 }

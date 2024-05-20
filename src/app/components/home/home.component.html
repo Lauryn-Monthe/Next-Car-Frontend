@@ -8,29 +8,30 @@
                         <h3 class="pt-3 font-weight-bold">Login</h3>
                     </div>
                     <div class="panel-body p-3">
-                        <form>
+                        <div class="form" [formGroup]="loginForm">
                             <div class="form-group pt-3">
                                 <div class="input-field">
                                     <span class="fa fa-user p-2"></span>
-                                    <input type="text" placeholder="Email">
+                                    <input type="text" formControlName="email" placeholder="Email">
                                 </div>
                             </div>
                             <div class="form-group pt-3">
                                 <div class="input-field">
                                     <span class="fa fa-lock p-2"></span>
-                                    <input [type]="type" placeholder="Password">
+                                    <input [type]="type" formControlName="password" placeholder="Password">
                                     <span (click)="hideShowPassword()" class="fa {{eyeIcon}}"></span>
                                 </div>
                             </div>
                             <div class="form-inline-fr mt-4">
                                 <a id="forget" class="font-weight-bold">Forget Password?</a>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block mt-4 w-100">Login</button>
+                            <button type="submit" class="btn btn-primary btn-block mt-4 w-100" (click)="loginAsCustomer()">Login as customer</button>
+                            <button type="submit" class="btn btn-primary btn-block mt-4 w-100" (click)="loginAsDriver()">Login as driver</button>
                             <div class="text-center pt-4 text-muted mb-2">Don't have account? <br> <br>
-                                <a id="forget" routerLink="/driver">Sign up as driver</a> <br>
-                                <a id="forget" routerLink="/customer">Sign up as customer</a> 
+                                <a id="forget" routerLink="/driverSignUp">Sign up as driver</a> <br>
+                                <a id="forget" routerLink="/customerSignUp">Sign up as customer</a>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

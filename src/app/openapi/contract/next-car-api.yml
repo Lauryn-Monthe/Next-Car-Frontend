@@ -80,7 +80,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /api/customers/{id}:
+  /api/customers/{customerId}:
     get:
       tags:
         - customer
@@ -90,7 +90,7 @@ paths:
       summary: Retrieve customer
       parameters:
         - in: path
-          name: id
+          name: customerId
           schema:
             type: string
           required: true
@@ -121,7 +121,7 @@ paths:
       description: Update a customer's account via the API.
       summary: Updating a customer's account
       parameters:
-        - name: id
+        - name: customerId
           in: path
           required: true
           schema:
@@ -154,7 +154,7 @@ paths:
       description: delete a customer's account via the API.
       summary: Deleting a customer's account
       parameters:
-        - name: id
+        - name: customerId
           in: path
           required: true
           schema:
@@ -500,7 +500,7 @@ components:
           type: string
           maxLength: 255
         password:
-          type: string   
+          type: string
         gender:
           $ref: '#/components/schemas/Gender'
         birthday:
@@ -591,7 +591,7 @@ components:
           type: string
           maxLength: 20
         password:
-          type: string  
+          type: string
         email:
           type: string
           maxLength: 255

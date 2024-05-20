@@ -13,13 +13,13 @@ export interface GetCustomerById$Params {
 /**
  * ID of the customer
  */
-  id: string;
+  customerId: string;
 }
 
 export function getCustomerById(http: HttpClient, rootUrl: string, params: GetCustomerById$Params, context?: HttpContext): Observable<StrictHttpResponse<Customer>> {
   const rb = new RequestBuilder(rootUrl, getCustomerById.PATH, 'get');
   if (params) {
-    rb.path('id', params.id, {});
+    rb.path('customerId', params.customerId, {});
   }
 
   return http.request(
@@ -32,4 +32,4 @@ export function getCustomerById(http: HttpClient, rootUrl: string, params: GetCu
   );
 }
 
-getCustomerById.PATH = '/api/customers/{id}';
+getCustomerById.PATH = '/api/customers/{customerId}';
